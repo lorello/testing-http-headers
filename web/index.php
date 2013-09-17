@@ -1,11 +1,18 @@
 <?php
+
 #ob=ini_get('output_buffering');
 
+# Useful in a clustered environment
 $hostname=shell_exec('/bin/uname -n');
+
+# HTTP Standard date format
 $date= date(DATE_RFC822);
+
+# Get apache headers
 $request=apache_request_headers();
 $response=apache_response_headers();
 $response=headers_list();
+
 #ob_end_flush();
 #flush();
 
@@ -21,6 +28,8 @@ $menu[]="<li><a href=\"?test=private_noexpire\">private_noexpire</a></li>";
 $menu[]="<li><a href=\"?test=esi-include-dynamic\">ESI with dynamic box</a></li>";
 $menu[]="</ul></div>";
 
+# To test ESI I need to output a block inside a page
+# and set different expiration time between the page and the box itself
 if ($_GET['test']!='box')
     $content[]=implode("\n", $menu);
 
@@ -33,7 +42,7 @@ switch($_GET['test'])
 
   case 'public':
     session_cache_limiter('public');
-    $content[]="<h2>This page can be cached in public cache</h2>";
+    $content[]="<h2>This page can be cached in public cache (means varnish)</h2>";
     break;
 
   case 'private_noexpire':
@@ -45,7 +54,7 @@ switch($_GET['test'])
     session_cache_limiter('nocache');
     $content[]="<h2>This page cannot be cached in any cache</h2>";
     break;
- 
+
   case 'esi-include-dynamic':
     session_cache_limiter('public');
     $content[]="<h2>This page can be cached in public cache</h2>";
