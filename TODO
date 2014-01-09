@@ -1,0 +1,11 @@
+Cases:
+
+1. response contains max-age=10 and s-max-age=20
+browser cache expires first, then expires varnish cache
+
+2. last-modified=$X used in response, make varnish request
+if-modified-since=$X
+2.a. test on static files from apache
+2.b. test on php page
+
+
