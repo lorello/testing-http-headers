@@ -1,6 +1,10 @@
 <?php
 /*
  * Simple app to test HTTP Headers and reverse-proxy behaviour
+ *
+ * For Response headers details:
+ * http://api.symfony.com/master/Symfony/Component/HttpFoundation/Response.html
+ *
  */
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -8,11 +12,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-# Turn on debugging
-$app['debug'] = false;
-
 # Create the app instance
 $app = new Silex\Application();
+
+# Turn on debugging
+$app['debug'] = true;
 
 # Useful in a clustered environment
 $hostname=shell_exec('/bin/uname -n');
@@ -21,7 +25,7 @@ $hostname=shell_exec('/bin/uname -n');
 $date= date(DATE_RFC822);
 
 # I'll use this as fake body content
-$app['body'] = "I'm your content, I've been generated on $date by host $hostname";
+$app['body'] = "I'm your content, I've been generated on <strong>$date</strong> by host <strong>$hostname</strong>";
 
 
 $app->get(
@@ -40,7 +44,7 @@ $app->get(
     '/expiration',
     function (Request $request) use ($app) {
         //$request->headers->get('name');
-        return Response::create($body, 200)
+        return Response::create($app['body'], 200)
             ->setMaxAge(0)
             ->setSharedMaxAge(60);
     }
