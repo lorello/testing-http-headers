@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+{% set active = slug %}
+
+{% block content %}
+
+    <div class="navbar nav-stacked">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="nav-collapse">
+                    <ul class="nav">
+
+                        <li {% if 'private' == active %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'private'}) }}">Private</a></li>
+                        <li {% if 'public' == active %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'public'}) }}">Public</a></li>
+                        <li {% if 'nocache' == active %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'nocache'}) }}">No Cache</a></li>
+                        <li {% if 'private_no_expire' == active %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'private_no_expire'}) }}">Private No Expire</a></li>
+                        <li {% if 'esi_with_dynamic_box' == active %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'esi_with_dynamic_box'}) }}">ESI With Dynamic Box</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    <div>
+	Date: {{ datetime }}<br/>
+
+    </div>
+
+{% endblock %}
