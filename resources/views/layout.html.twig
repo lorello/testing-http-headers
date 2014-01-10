@@ -7,10 +7,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>{{ 'Homepage'|trans }}</title>
+    <title>Homepage | Softec Test Suite</title>
 
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Softec Test Suite">
+    <meta name="author" content="Softec 2014">
 
     <meta name="viewport" content="width=device-width">
 
@@ -25,29 +25,11 @@
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                <a class="brand" href="{{ path('homepage') }}">{{ 'Silex Kitchen Sink Edition'|trans }}</a>
+                <a class="brand" href="{{ path('homepage') }}">Softec Test Suite</a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li {% if 'homepage' == active %}class="active"{% endif %}><a href="{{ path('homepage') }}">{{ 'Homepage'|trans }}</a></li>
-                        <li {% if 'reverse_proxy' == active %}class="active"{% endif %}><a href="{{ path('reverse_proxy') }}">Reverse Proxy</a></li>
-{#
-                        <li {% if 'page_with_cache' == active %}class="active"{% endif %}><a href="{{ path('page_with_cache') }}">Cache sample</a></li>
-                        <li {% if 'form' == active %}class="active"{% endif %}><a href="{{ path('form') }}">Form sample</a></li>
-                        <li {% if 'doctrine' == active %}class="active"{% endif %}><a href="{{ path('doctrine') }}">Doctrine</a></li>
-                        <li class="dropdown{% if 'account' == active %} active{% endif %}">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Account <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                {% if is_granted('ROLE_USER') %}
-                                    <li><a href="{{ path('logout') }}">{{ 'Logout'|trans }}</a></li>
-                                {% else %}
-                                    <li><a href="{{ path('login') }}">{{ 'Login'|trans }}</a></li>
-                                    <li><a href="#">{{ 'Register'|trans }}</a></li>
-                                {% endif %}
-                            </ul>
-                        </li>
-#}
+                        <li {% if 'homepage' == active %}class="active"{% endif %}><a href="{{ path('homepage') }}">Homepage</a></li>
+                        <li {% if 'reverse_proxy' == active %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug') }}">Reverse Proxy</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

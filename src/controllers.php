@@ -14,22 +14,21 @@ $app->match('/', function() use ($app) {
     return $app['twig']->render('index.html.twig');
 })->bind('homepage');
 
+/*
 $app->match('/reverse_proxy', function() use ($app) {
-    return $app['twig']->render('reverse_proxy.html.twig');
-})->bind('reverse_proxy');
-
-$app->match('/reverse_proxy/{slug}', function($slug) use ($app) {
-
     $datetime= date(DATE_RFC822);
-
-    $sContent = $app['twig']->render('reverse_proxy.html.twig'
+    return $app['twig']->render('reverse_proxy.html.twig'
 	, array(
-	    'slug' => $slug
+	    'slug' => ''
 	    , 'datetime' => $datetime
 	)
 	);
+})->bind('reverse_proxy');
+*/
 
-    $oResponse = Response::create($sContent, 200);
+$app->match('/reverse_proxy/{slug}', function($slug) use ($app) {
+
+    $oResponse = Response::create('', 200);
 
     switch($slug) {
     case 'private':
@@ -40,16 +39,20 @@ $app->match('/reverse_proxy/{slug}', function($slug) use ($app) {
 	break;
     }
 
+
+    $datetime= date(DATE_RFC822);
+    $sContent = $app['twig']->render('reverse_proxy.html.twig'
+	, array(
+	    'slug' => $slug
+	    , 'datetime' => $datetime
+	)
+	);
+    $oResponse->setContent($sContent);
+
+
     return $oResponse;
 
-})->bind('reverse_proxy_slug');
-
-$app->get('/page-with-cache', function() use ($app) {
-    $response = new Response($app['twig']->render('page-with-cache.html.twig', array('date' => date('Y-M-d h:i:s'))));
-    $response->setTtl(10);
-
-    return $response;
-})->bind('page_with_cache');
+})->value('slug', 'private')->bind('reverse_proxy_slug');
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
