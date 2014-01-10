@@ -6,28 +6,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
 
 $app->match('/', function() use ($app) {
+/*
     $app['session']->getFlashBag()->add('warning', 'Warning flash message');
     $app['session']->getFlashBag()->add('info', 'Info flash message');
     $app['session']->getFlashBag()->add('success', 'Success flash message');
     $app['session']->getFlashBag()->add('error', 'Error flash message');
+*/
 
-    return $app['twig']->render('index.html.twig');
-})->bind('homepage');
-
-/*
-$app->match('/reverse_proxy', function() use ($app) {
-    $datetime= date(DATE_RFC822);
-    return $app['twig']->render('reverse_proxy.html.twig'
+    return $app['twig']->render('index.html.twig'
 	, array(
-	    'slug' => ''
-	    , 'datetime' => $datetime
+	    'section' => 'homepage'
 	)
 	);
-})->bind('reverse_proxy');
-*/
+})->bind('homepage');
 
 $app->match('/reverse_proxy/{slug}', function($slug) use ($app) {
 
+    $oRequest = Request::createFromGlobals();
     $oResponse = Response::create('', 200);
 
     switch($slug) {
@@ -43,8 +38,11 @@ $app->match('/reverse_proxy/{slug}', function($slug) use ($app) {
     $datetime= date(DATE_RFC822);
     $sContent = $app['twig']->render('reverse_proxy.html.twig'
 	, array(
-	    'slug' => $slug
+	    'section' => 'reverse_proxy'
+	    , 'slug' => $slug
 	    , 'datetime' => $datetime
+	    , 'request_headers' => $oRequest->headers->__toString()
+	    , 'response_headers' => $oResponse->headers->__toString()
 	)
 	);
     $oResponse->setContent($sContent);
