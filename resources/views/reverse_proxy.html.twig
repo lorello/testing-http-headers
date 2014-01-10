@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
-{% set active2 = slug|default('private') %}
+{% set active2 = slug|default('exp-cc-private') %}
 
 {% block content %}
 
@@ -9,10 +9,13 @@
                 <div class="nav-collapse">
                     <ul class="nav">
 
-                        <li {% if 'private' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'private'}) }}">Private</a></li>
-                        <li {% if 'public' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'public'}) }}">Public</a></li>
-                        <li {% if 'nocache' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'nocache'}) }}">No Cache</a></li>
-                        <li {% if 'private_no_expire' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'private_no_expire'}) }}">Private No Expire</a></li>
+                        <li {% if 'exp-basic' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'exp-basic'}) }}">Expire</a></li>
+                        <li {% if 'exp-cc-private' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'exp-cc-private'}) }}">Private</a></li>
+                        <li {% if 'exp-cc-public' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'exp-cc-public'}) }}">Public</a></li>
+                        <li {% if 'exp-cc-nocache' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'exp-cc-nocache'}) }}">No Cache</a></li>
+                        <li {% if 'exp-cc-maxage' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'exp-cc-maxage'}) }}">Max Age</a></li>
+                        <li {% if 'exp-cc-smaxage' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'exp-cc-smaxage'}) }}">Shared Max Age</a></li>
+                        <li {% if 'exp-cc-mixed' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'exp-cc-mixed'}) }}">Mixing</a></li>
                         <li {% if 'esi_with_dynamic_box' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'esi_with_dynamic_box'}) }}">ESI With Dynamic Box</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
@@ -21,7 +24,20 @@
     </div>
 
     <div class="label label-important">
-        Datetime: {{ datetime }}
+        Page generated on {{ datetime }}
+    </div>
+
+    <div>
+	<h2>{{ lesson_title }}</h2>
+	{{ lesson|raw|nl2br }}
+	<p><a href="{{ lesson_link }}">Read more...</a></p>
+    </div>
+
+    <div class="page-header">
+        <h2>Response Headers</h2>
+    </div>
+    <div class="well">
+	{{ response_headers|nl2br }}
     </div>
 
     <div class="page-header">
@@ -31,10 +47,4 @@
 	{{ request_headers|nl2br }}
     </div>
 
-    <div class="page-header">
-        <h2>Response Headers</h2>
-    </div>
-    <div class="well">
-	{{ response_headers|nl2br }}
-    </div>
 {% endblock %}
