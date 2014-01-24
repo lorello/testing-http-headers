@@ -120,7 +120,7 @@ The expiration time of an entity MAY be specified by the origin server using the
 
     return $oResponse;
 
-})->value('slug', 'expiration-private')->bind('reverse_proxy_slug');
+})->value('slug', 'exp-basic')->bind('reverse_proxy_slug');
 
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
