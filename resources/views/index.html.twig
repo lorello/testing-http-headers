@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+{% set active = section|default(null) %}
+
+{% block content %}
+
+    <h1>Softec Test Suite</h1>
+
+    <p>
+    Pagine di prova per le funzionalità di:
+    </p>
+
+    <ul class="nav nav-tabs nav-stacked">
+	<li {% if 'homepage' == active %}class="active"{% endif %}><a href="{{ path('homepage') }}">Homepage</a></li>
+	<li {% if 'reverse_proxy' == active %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug') }}">Reverse Proxy</a></li>
+    </ul>
+    
+{% endblock %}
