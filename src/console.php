@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
-$console = new Application('Silex - Kitchen Edition', '0.1');
+$console = new Application('Learning HTTP', '0.1');
 
 $app->boot();
 
@@ -31,6 +31,22 @@ $console
 
 if (isset($app['cache.path'])) {
     $console
+        ->register('cache:init')
+        ->setDescription('Initialize the cache path')
+        ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
+
+            $cacheDir = $app['cache.path'];
+            if (!file_exists($cacheDir) and is_dir($cacheDir)) {
+                if (!mkdir($cacheDir)) {
+                    $output->writeln(sprintf("%s <error>Error</error>", 'cache:init'));
+                }
+            }
+            $output->writeln(sprintf("%s <info>success</info>", 'cache:init'));
+        });
+}
+
+if (isset($app['cache.path'])) {
+    $console
         ->register('cache:clear')
         ->setDescription('Clears the cache')
         ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
@@ -42,8 +58,10 @@ if (isset($app['cache.path'])) {
             $filesystem->remove($finder);
 
             $output->writeln(sprintf("%s <info>success</info>", 'cache:clear'));
-    });
+        });
 }
+
+
 
 $console
     ->register('doctrine:schema:show')
