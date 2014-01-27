@@ -9,8 +9,10 @@ $hostname=shell_exec('/bin/uname -n');
 $date= date(DATE_RFC822);
 
 # Get apache headers
-$request=apache_request_headers();
-$response=apache_response_headers();
+if (function_exists('apache_request_headers'))
+  $request=apache_request_headers();
+if (function_exists('apache_response_headers'))
+  $response=apache_response_headers();
 $response=headers_list();
 
 #ob_end_flush();
