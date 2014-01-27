@@ -1,0 +1,13 @@
+---
+version: 1
+composer:
+  mode: always
+  method: install
+#strategy: fullsync
+excludes:
+  - resources/cache
+  - resources/assets
+  - vendor/
+post-deploy:
+  script: console
+  args: ['assetic:dump']
