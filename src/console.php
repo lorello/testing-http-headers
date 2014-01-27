@@ -29,6 +29,22 @@ $console
     })
 ;
 
+if (isset($app['monolog.logfile'])) {
+    $console
+        ->register('monolog:init')
+        ->setDescription('Initialize needed paths')
+        ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
+            
+            $logDir = dirname($app['monolog.logfile']);
+            if (!file_exists($logDir) and is_dir($logDir)) {
+                if (!mkdir($logDir)) {
+                    $output->writeln(sprintf("%s <error>Error</error>", 'monolog:init'));
+                }
+            }
+            $output->writeln(sprintf("%s <info>success</info>", 'monolog:init'));
+        });
+}
+
 if (isset($app['cache.path'])) {
     $console
         ->register('cache:init')
@@ -38,8 +54,9 @@ if (isset($app['cache.path'])) {
             $cacheDir = $app['cache.path'];
             if (!file_exists($cacheDir) and is_dir($cacheDir)) {
                 if (!mkdir($cacheDir)) {
-                    $output->writeln(sprintf("%s <error>Error</error>", 'cache:init'));
+                    $output->writeln(sprintf("%s <error>Error creating $cacheDir</error>", 'cache:init'));
                 }
+                mkdir($cacheDir.'/profiler');
             }
             $output->writeln(sprintf("%s <info>success</info>", 'cache:init'));
         });
