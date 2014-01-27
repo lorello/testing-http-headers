@@ -16,7 +16,8 @@
                         <li {% if 'exp-cc-maxage' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'exp-cc-maxage'}) }}">Max Age</a></li>
                         <li {% if 'exp-cc-smaxage' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'exp-cc-smaxage'}) }}">Shared Max Age</a></li>
                         <li {% if 'exp-cc-mixed' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'exp-cc-mixed'}) }}">Mixing</a></li>
-                        <li {% if 'esi_with_dynamic_box' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'esi_with_dynamic_box'}) }}">ESI With Dynamic Box</a></li>
+                        <li {% if 'val-etag' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'val-etag'}) }}">Etag</a></li>
+                        <li {% if 'val-lastmod' == active2 %}class="active"{% endif %}><a href="{{ path('reverse_proxy_slug', {'slug': 'val-lastmod'}) }}">Last-Modified</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -34,17 +35,17 @@
     </div>
 
     <div class="page-header">
-        <h2>Response Headers</h2>
+        <h3>Response Headers</h3>
     </div>
     <div class="well">
-	{{ response_headers|nl2br }}
+	      {{ response_headers|nl2br }}
     </div>
 
     <div class="page-header">
-        <h2>Request Headers</h2>
+        <h3>Request Headers</h3>
     </div>
     <div class="well">
-	{{ request_headers|nl2br }}
+	      {{ request_headers|nl2br }}
     </div>
 
 {% endblock %}
