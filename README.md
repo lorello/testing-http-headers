@@ -12,6 +12,8 @@ Install using composer
 
     $ curl -s http://getcomposer.org/installer | php
     $ composer.phar install
+    $ php console monolog:init
+    $ php console cache:init
     $ php console assetic:dump
 
 
