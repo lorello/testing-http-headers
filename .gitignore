@@ -1,4 +1,5 @@
 /composer.lock
+/fortrabbit.txt
 /resources/cache/*
 /resources/log/*
 /vendor/
