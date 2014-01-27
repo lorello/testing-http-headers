@@ -1,8 +1,20 @@
 <IfModule mod_rewrite.c>
     Options -MultiViews
 
+    # Source: http://fortrabbit.com/docs/cookbook/symfony-2
+    DirectoryIndex index.php
     RewriteEngine On
-    RewriteBase web
+
+    # Route anything for http://yourdomain.tld/index.php/some/path
+    RewriteCond %{REQUEST_URI} ^/index\.php/ [NC]
+    RewriteRule ^index\.php/(.*)$    /index.php [NC,L,QSA,E=PATH_INFO:/$1]
+
+    # Route anything for http://yourdomain.tld/index_dev.php/some/path
+    RewriteCond %{REQUEST_URI} ^/index_dev\.php/ [NC]
+    RewriteRule ^index_dev\.php/(.*)$    /index_dev.php [NC,L,QSA,E=PATH_INFO:/$1]
+
+    # Route anything for http://yourdomain.tld/some/path to index.php
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$    /index.php [NC,L,QSA,E=PATH_INFO:/$1]
 </IfModule>
