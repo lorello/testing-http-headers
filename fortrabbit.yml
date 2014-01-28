@@ -11,5 +11,5 @@ excludes:
 post-deploy:
   script: console
   args: 
-    - assetic:dump
+    - cache:clear
 
