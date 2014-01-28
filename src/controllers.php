@@ -148,6 +148,24 @@ The expiration time of an entity MAY be specified by the origin server using the
 
 })->value('slug', 'exp-basic')->bind('reverse_proxy_slug');
 
+$app->get('/boxes', function() use ($app) {
+    
+    $request = Request::createFromGlobals();
+    $response = Response::create('', 200);
+    $content = $app['twig']->render(
+      'boxes.html.twig'
+      , array(
+	      'section' => 'boxes'
+	      , 'request_headers' => $request->headers->__toString()
+	      , 'response_headers' => $response->headers->__toString()
+	    )
+    );
+    $response->setContent($content);
+
+    return $response;
+})->bind('boxes');
+
+
 $app->match('/boxes/date/{frame}', function($frame) use ($app) {
 
     $request = Request::createFromGlobals();

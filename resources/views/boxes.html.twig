@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <div class="navbar nav-stacked">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="nav-collapse">
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+     <div class="page-header">
+        <h2>Find a good title</h2>
+    </div>
+    <div class="well">
+	      <a href="{{ path('boxes') }}/date/second">Box updated each second</a>
+	      <a href="{{ path('boxes') }}/date/minute">Box updated each minute</a>
+	      <a href="{{ path('boxes') }}/date/day">Box updated each day</a>
+    </div>
+    <div class="well">
+      <h3>Application headers</h3>
+      <p>loading...</p>
+    </div>
+
+    <div class="well">
+      <h3>Browser headers</h3>
+      <p>loading...</p>
+    </div>
+
+
+ {% endblock %}
