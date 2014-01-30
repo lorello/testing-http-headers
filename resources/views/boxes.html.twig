@@ -15,19 +15,29 @@
         <h2>Find a good title</h2>
     </div>
     <div class="well">
-	      <a href="{{ path('boxes') }}/date/second">Box updated each second</a>
-	      <a href="{{ path('boxes') }}/date/minute">Box updated each minute</a>
-	      <a href="{{ path('boxes') }}/date/day">Box updated each day</a>
+	      <a class="btn btn-primary" href="#" onClick="call1('{{ path('boxes') }}/date/second')">Box updated each second</a>  
+	      <a class="btn btn-primary" href="#" onClick="call1('{{ path('boxes') }}/date/minute')">Box updated each minute</a>  
+	      <a class="btn btn-primary" href="#" onClick="call1('{{ path('boxes') }}/date/day')">Box updated each day</a>
     </div>
     <div class="well">
-      <h3>Application headers</h3>
-      <p>loading...</p>
+        <p class="btn btn-danger" id="callstatus">...</p>
     </div>
 
-    <div class="well">
-      <h3>Browser headers</h3>
-      <p>loading...</p>
-    </div>
+    <div class="row">
+     <div class="well col-md-4">
+        <h3>Box Content</h3>
+        <p id="boxcontent">content goes here</p>
+      </div>
 
+      <div class="well col-md-4">
+        <h3>Application headers</h3>
+        <p id="boxheaders">headers added from PHP code goes here</p>
+      </div>
+
+      <div class="well col-md-4">
+        <h3>Browser headers</h3>
+        <p id="browserheaders">headers received from your browser goes here</p>
+      </div>
+    </div>
 
  {% endblock %}
