@@ -11,7 +11,7 @@ function call1(url_tocall) {
         url : url_tocall,
         success : function (data,stato) {
             $("#boxcontent").html(data);
-            $("#callstatus").html(stato);
+            $("#callstatus").html('<div class="alert alert-info"><button class="close" data-dismiss="alert">×</button>'+ stato + '</div>');
             var res = []; 
             res = geturl.getAllResponseHeaders().split("\n"); //replace(/\n/g,"<br />");
 
@@ -25,6 +25,7 @@ function call1(url_tocall) {
         },
         error : function (richiesta,stato,errori) {
             alert("Error occurred, call state is: "+stato);
+            $("#callstatus").html('<div class="alert alert-error"><button class="close" data-dismiss="alert">×</button>'+ stato + '</div>');
         }
     }); 
   })(jQuery);
