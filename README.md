@@ -17,3 +17,7 @@ Install using composer
     $ php console assetic:dump
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/lorello/testing-http-headers/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
