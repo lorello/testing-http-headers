@@ -52,9 +52,18 @@
             {% block content %}
             {% endblock %}
         </div>
-    </div>
+        <div>
+          <small>
+            View this site through 
+              <a href="http://varnish.learning-http.devops.it">Varnish</a>,
+              <a href="http://cloudflare.learning-http.devops.it">CloudFlare</a>, or 
+              <a href="http://cloudflare.varnish.learning-http.devops.it">Varnish+CloudFlare</a>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+          </small>
+        </div>
+
+    </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ app.request.basepath }}/js/libs/jquery-1.7.2.min.js"><\/script>')</script>
     <script src="{{ app.request.basepath }}/assets/js/scripts.js"></script>
 </body>
