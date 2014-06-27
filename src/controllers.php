@@ -148,6 +148,10 @@ The expiration time of an entity MAY be specified by the origin server using the
 
 })->value('slug', 'exp-basic')->bind('reverse_proxy_slug');
 
+
+
+
+
 $app->get('/boxes', function() use ($app) {
     
     $request = Request::createFromGlobals();
@@ -182,6 +186,7 @@ $app->match('/boxes/date/{frame}', function($frame) use ($app) {
         $sDate = $date->format('Y-m-d H:i');
         break;
 
+      case 'day':
       default:
         $sDate = $date->format('Y-m-d');
         $frame = 'day';
@@ -191,7 +196,6 @@ $app->match('/boxes/date/{frame}', function($frame) use ($app) {
     $response->setContent($content);
 		$response->setPublic();
     $response->setETag(md5($response->getContent()));
-
     # this returns a 304 if response' ETAG matches request's ETAG
     $response->isNotModified($request);
     return $response;
