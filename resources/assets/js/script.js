@@ -15,10 +15,11 @@ function call1(url_tocall) {
             $("#callstatus").html('<div class="alert alert-info"><button class="close" data-dismiss="alert">×</button>'+ stato + '</div>');
             var res = []; 
             res = geturl.getAllResponseHeaders().split("\n"); //replace(/\n/g,"<br />");
+            $("#browserheaders").html("");
             for (i=0; i < res.length; i++) {
               if (res[i]) {
-                if (res[i].match(/^X/)) {
-                  $("#browserheaders").append("<br />["+i+"] "+res[i]+" ");
+                if (res[i].match(/^CF-/)) {
+                  $("#browserheaders").append("<br />["+i+"] CF"+res[i]+" ");
                 } else {
                   $("#browserheaders").append("<br />["+i+"] "+res[i]+" ");
                 }
