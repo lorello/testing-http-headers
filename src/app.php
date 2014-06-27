@@ -16,7 +16,6 @@ use Symfony\Component\Security\Core\Encoder\PlaintextPasswordEncoder;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 
 $app->register(new HttpCacheServiceProvider());
-
 $app->register(new SessionServiceProvider());
 $app->register(new ValidatorServiceProvider());
 $app->register(new FormServiceProvider());
