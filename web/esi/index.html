@@ -1,0 +1,87 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<title>ESI Test page</title>
+
+<meta name="description" content="Test page to understand ESI">
+<meta name="author" content="LoreLLo">
+
+<meta name="viewport" content="width=device-width">
+
+<link rel="stylesheet" href="../assets/css/styles.css">
+
+<script src="../modernizr-2.5.3-respond-1.1.0.min.js"></script>
+</head>
+
+<body>
+<!--[if lt IE 7]>
+<p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
+<![endif]-->
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="">ESI Test Page</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><a href="/">Homepage</a></li>
+          <li class="active"><a href="/index.html">Index</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div id="main" role="main" class="container">
+
+    <div class="navbar nav-stacked">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="nav-collapse">
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="page-header">
+      <h2>Find a good title</h2>
+    </div>
+    <div class="row">
+      <div class="span4">
+        <esi:include src="/boxes/date/second" />
+      </div>
+      
+      <div class="span4">
+        <esi:include src="/boxes/date/minute" />
+      </div>
+      
+      <div class="span4">
+        <esi:include src="/boxes/date/day" />
+      </div>
+    </div>
+
+  </div><!-- /main -->
+
+  <div>
+    <small>
+      View this site through 
+      <a href="http://varnish.learning-http.devops.it/">Varnish</a>,
+      <a href="http://cloudflare.learning-http.devops.it/">CloudFlare</a>, or 
+      <a href="http://cloudflare.varnish.learning-http.devops.it/">Varnish+CloudFlare</a>
+    </small>
+  </div>
+
+</div>
+<script src="../jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+<script src="../scripts.js"></script>
+
+</body></html>
